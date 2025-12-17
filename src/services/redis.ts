@@ -56,6 +56,7 @@ export const setCache = async <T>(key: string, value: unknown): Promise<void> =>
 export const clearCache = async (): Promise<void> => {
 	// Flush cache
 	await client.flushAll();
+	console.log('Cache clear successful.');
 };
 
 // Destroy client
