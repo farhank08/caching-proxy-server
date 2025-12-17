@@ -7,23 +7,6 @@ import * as Redis from './services/redis';
 
 // Start server
 export const startServer = (port: number, origin: string): http.Server => {
-	try {
-		// Create redis cache client
-		Redis.initCache();
-	} catch (error: unknown) {
-		// Default error message
-		let message: string = 'UNHANDLED ERROR';
-
-		// Get message from error if error: Error
-		if (error instanceof Error) {
-			message = error.message;
-		}
-
-		// Exit process on error
-		console.error(`Redis client initilization error: ${message}`);
-		process.exit(1);
-	}
-
 	// Create Express app
 	const app: Express = express();
 
