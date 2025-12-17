@@ -63,7 +63,7 @@ This will:
 ### Start the proxy server
 
 ```bash
-npm start -- start --port <port> --origin <origin-url>
+npm start -- start-proxy --port <port> --origin <origin-url>
 ```
 
 **Options**
