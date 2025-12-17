@@ -1,10 +1,27 @@
 import { Command } from 'commander';
 import http from 'http';
-
+import * as Redis from './services/redis';
 import { startServer, clearCache, closeCache } from './server';
 
 // Express server instance
 let server: http.Server;
+
+try {
+	// Create redis cache client
+	Redis.initCache();
+} catch (error: unknown) {
+	// Default error message
+	let message: string = 'UNHANDLED ERROR';
+
+	// Get message from error if error: Error
+	if (error instanceof Error) {
+		message = error.message;
+	}
+
+	// Exit process on error
+	console.error(`Redis client initilization error: ${message}`);
+	process.exit(1);
+}
 
 // Create a new Command program
 const program: Command = new Command();
@@ -52,27 +69,29 @@ program
 	.description('Clear the cache stored in Redis.')
 	.action(async () => {
 		// Logic to clear the cache goes here
-		await clearCache();
-		console.log('Cache cleared successfully.');
+		clearCache();
 	});
 
 // Shut down server gracefully
 const shutdown = async () => {
 	// Close the cache client
 	closeCache();
+	console.log(`Cache shutdown successful`);
 
 	// Close the server
-	server.close(async (error: Error | undefined) => {
-		if (error) {
-			// Exit with error
-			console.error(`Server shutdown error: ${error.message}`);
-			process.exit(1);
-		}
+	if (server) {
+		server.close(async (error: Error | undefined) => {
+			if (error) {
+				// Exit with error
+				console.error(`Server shutdown error: ${error.message}`);
+				process.exit(1);
+			}
 
-		// Exit with success
-		console.log(`Server shut down successful`);
-		process.exit(0);
-	});
+			// Exit with success
+			console.log(`Server shutdown successful`);
+			process.exit(0);
+		});
+	}
 };
 
 // Assign callback for shutdown
