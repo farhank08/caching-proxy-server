@@ -9,9 +9,10 @@
 		"caching-proxy": "dist/index.js"
 	},
 	"scripts": {
+		"dev": "ts-node-dev --respawn src/index.ts",
 		"build": "npx tsc",
 		"start": "npm run build && node dist/index.js",
-		"dev": "ts-node-dev --respawn src/index.ts"
+		"test": "vitest"
 	},
 	"dependencies": {
 		"axios": "^1.13.2",
@@ -24,6 +25,7 @@
 		"@types/express": "^5.0.6",
 		"@types/node": "^25.0.2",
 		"ts-node-dev": "^2.0.0",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.16"
 	}
 }
