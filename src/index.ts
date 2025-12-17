@@ -38,7 +38,7 @@ program.command('test').action(() => {
 
 // Start proxy server using options
 program
-	.command('start')
+	.command('start-proxy')
 	.description('Run a proxy server on a specified port with a given origin server URL.')
 	.option('-p, --port <number>', 'Port to run the server on', '3000')
 	.requiredOption('-o, --origin <origin>', 'Origin server URL')
