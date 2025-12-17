@@ -25,7 +25,7 @@ export const initCache = async () => {
 		// Default error message
 		let message: string = 'UNHANDLED ERROR';
 
-		// Get message from error if error: Error
+		// Get message from Error class
 		if (error instanceof Error) {
 			message = error.message;
 		}
