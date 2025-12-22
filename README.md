@@ -35,7 +35,7 @@ Create a `.env` file in the project root:
 REDIS_HOST=redis-connection-url
 ```
 
-The redis host must be a connection url (local, docker or cloud)
+**IMPORTANT** The redis host must be a connection url (local, docker or cloud) - See below for docker instructions
 
 ## Running the Application
 

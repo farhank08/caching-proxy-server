@@ -35,8 +35,10 @@ export default (origin: string) => {
 			// Send request to origin server
 			const originRes: AxiosResponse = await axios.get(url, {
 				headers: {
-					...req.headers,
+					accept: req.headers.accept,
+					authorization: req.headers.authorization,
 					host: undefined,
+					timeout: 5000,
 				},
 				data: req.body ? req.body : null,
 			});
@@ -64,6 +66,14 @@ export default (origin: string) => {
 			// Add error message to log
 			if (axios.isAxiosError(error) || error instanceof Error) {
 				console.error(error.message);
+
+				// Handle bad gateway error
+				if (error.message.includes('ECONNRESET')) {
+					return res.status(502).json({
+						success: false,
+						message: 'Upstream connection reset',
+					});
+				}
 			}
 
 			// Respond with failure
