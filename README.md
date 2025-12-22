@@ -8,7 +8,6 @@ Credit https://roadmap.sh/projects/caching-server
 
 - Node.js
 - Redis server (local, Docker, or managed cloud service)
-- Docker (optional, for running Redis locally)
 
 ## Installation
 
@@ -90,6 +89,7 @@ This command flushes all cached data from Redis.
 ## Running Redis with Docker (Optional)
 
 If you don’t have Redis installed locally, you can run it using Docker Compose.
+- Docker required
 
 This will start a Redis instance on `redis://localhost:6379`.
 
