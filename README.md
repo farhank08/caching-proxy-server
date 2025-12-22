@@ -85,6 +85,7 @@ This command flushes all cached data from Redis.
 3. If a cache hit occurs, the cached response is returned
 4. On a cache miss, the request is forwarded to the origin API
 5. The response is cached in Redis using the configured TTL
+6. The response is then forwarded to the client
 
 ## Running Redis with Docker (Optional)
 
