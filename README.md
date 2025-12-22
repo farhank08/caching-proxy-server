@@ -2,7 +2,7 @@
 
 A Node.js **caching proxy server** built with **TypeScript** that sits in front of a third‑party API and caches responses in **Redis** to improve performance and reduce upstream API calls. The server exposes a CLI for starting the proxy and clearing the cache.
 
-From https://roadmap.sh/projects/caching-server
+Credit https://roadmap.sh/projects/caching-server
 
 ## Prerequisites
 
